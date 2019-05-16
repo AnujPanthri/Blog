@@ -1,0 +1,62 @@
+ {% if user.is_authenticated %}
+ <div class="row">
+     <form method="POST" id="comment_form" class="col-lg-6 col-md-8">
+         {% csrf_token %}
+         {{comment_form.as_p}}
+         <button type="submit" class="btn btn-outline-success">Comment</button>
+     </form>
+ </div>
+ {% else %}
+ <h3>Log In to leave a comment</h3>
+ {% endif %}
+ {{comments.count}} Comment{{comments.count|pluralize}}
+ {% for comment in comments %}
+ <blockquote class="blockquote my-2">
+     <p class="mb-0">{{comment.content}}</p>
+     <footer class="blockquote-footer">by <cite title="Source Title">{{comment.user|capfirst}}</cite></footer>
+
+     <div class="accordion row" id="accordionExample">
+         <h2 class="mb-0 col-12">
+             <button class="btn btn-link" type="button" data-toggle="collapse"
+                 data-target="#collapse_reply_{{forloop.revcounter}}" aria-expanded="true"
+                 aria-controls="collapse_reply_{{forloop.revcounter}}">
+                 <small>View Replies</small>
+             </button>
+
+             {% if user.is_authenticated %}
+             <button class="btn btn-link" type="button" data-toggle="collapse"
+                 data-target="#collapse{{forloop.revcounter}}" aria-expanded="true"
+                 aria-controls="collapse{{forloop.revcounter}}">
+                 <small>Reply</small>
+             </button>
+
+         </h2>
+
+         <div id="collapse{{forloop.revcounter}}" class="collapse col-12" aria-labelledby="headingOne"
+             data-parent="#accordionExample">
+             <div class="card-body row">
+                 <form method="POST" id="reply_form" class="col-lg-6 col-md-10">
+                     {% csrf_token %}
+                     <input type="hidden" name="comment_id" value="{{comment.id}}">
+                     {{comment_form.as_p}}
+                     <button type="submit" class="btn btn-sm btn-outline-success">Reply</button>
+                 </form>
+             </div>
+         </div>
+         {% endif %}
+         <div class="collapse multi-collapse" id="collapse_reply_{{forloop.revcounter}}">
+             {% for reply in comment.replies.all %}
+             <blockquote class="blockquote ml-5">
+                 <p class="mb-0"><small>{{reply.content}}</small></p>
+                 <footer class="blockquote-footer"><small>by <cite
+                             title="Source Title">{{reply.user|capfirst}}</cite></small>
+                 </footer>
+             </blockquote>
+             {% endfor %}
+         </div>
+     </div>
+
+ </blockquote>
+
+
+ {% endfor %}

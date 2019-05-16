@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method='POST'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <a href="{% url 'password_reset' %}">Forget Password</a>
+    <input type="submit" value="Log In">
+    <p>-- OR --</p>
+    <a href="{% url "social:begin" "google-oauth2" %}">Google+</a>
+    <a href="{% url "social:begin" "facebook" %}">fb</a>
+
+</form>
+{% endblock  %}

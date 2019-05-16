@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>{{post.title}}</h3>
+<small>Post created by: {{post.author}}</small>
+<hr>
+<p>{{post.content}}</p>
+<div id="like_section">
+    {% include "blog/_like_section.html" %}
+</div>
+
+{% if post.author == request.user %}
+<div class="section-1 float-right">
+    <a href="#">
+        <button class='btn btn-outline-success'>Edit</button>
+    </a>
+    <a href="#" id="delete_post">
+        <button class='btn btn-outline-danger'>Delete</button>
+    </a>
+</div>
+{% endif %}
+<br><br>
+<hr>
+<div class="main-comment-section">
+    {% include "blog/_comment_section.html" %}
+</div>
+{% endblock %}

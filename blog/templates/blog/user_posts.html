@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>I am from blog</h1>
+{% for i in posts %}
+<p>id: {{i.id}}</p>
+<p><a href="{% url 'blog:detail' i.slug %}">{{i.title}}</a></p>
+{{i.content|slice:"100"}} posted on {{i.published_date}}
+<br>
+{% endfor %}
+{% endblock %}

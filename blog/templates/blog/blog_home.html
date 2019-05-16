@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    {% if posts.count == 0 %}
+    <h3>No Posts found in search keyword "{{request.GET.q}}"</h3>
+    {% else %}
+
+    {% for post in posts %}
+    <div class="col-md-6">
+        <div class="img-thumbnail">
+            <a href="{{post.get_absolute_url}}">{{post.title}}</a><small
+                class="float-right">{{post.created_date}}</small><br>
+            Author: {{post.author}}
+            {{post.content|truncatechars:"140"}}
+        </div>
+        <br>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endblock %}

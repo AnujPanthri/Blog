@@ -1,0 +1,13 @@
+    {{post.likes.count}} like{{post.likes.count|pluralize}}
+    {% if user.is_authenticated %}
+
+    {% if is_liked %}
+    <button id="like" type="submit" name="post_id" value="{{post.id}}" class="btn btn-outline-danger"><i
+            class="fa fa-plus">R</i></button>
+    {% else %}
+    <button id="like" type="submit" name="post_id" value="{{post.id}}" class="btn btn-outline-secondary"><i
+            class="fa fa-plus">L</i></button>
+    {% endif %}
+    {% else %}
+    <small>Log In to like</small>
+    {% endif %}
