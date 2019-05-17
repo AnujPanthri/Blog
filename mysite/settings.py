@@ -21,9 +21,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = ')^h#5zo&bda9=__=jc^5sqa!j4$xn^k5=nr-3jtjhs#b4y99rg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ashutoshsrivastava.pythonanywhere.com',]
 
 
 # Application definition
@@ -82,24 +82,25 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'USER' : 'root',
-#         'PASSWORD' : 'JLX2jkYc6fh2rQw',
-#         'NAME' : 'blog',
-#         'PORT' : '3306',
-#         'default-character-set' : 'utf8',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'USER' : 'ashutoshsrivasta',
+        'PASSWORD' : 'ashutosh@123',
+        'HOST':'ashutoshsrivastava.mysql.pythonanywhere-services.com',
+        'NAME' : 'ashutoshsrivasta$blog',
+        'PORT' : '3306',
+        'default-character-set' : 'utf8',
+    }
+}
 
 
 # Password validation
@@ -139,6 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_files'),
@@ -151,7 +153,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Email config

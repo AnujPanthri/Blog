@@ -13,7 +13,7 @@
  {% for comment in comments %}
  <blockquote class="blockquote my-2">
      <p class="mb-0">{{comment.content}}</p>
-     <footer class="blockquote-footer">by <cite title="Source Title">{{comment.user|capfirst}}</cite></footer>
+     <footer class="blockquote-footer">by <cite title="Source Title">{{comment.author|capfirst}}</cite></footer>
 
      <div class="accordion row" id="accordionExample">
          <h2 class="mb-0 col-12">
@@ -49,7 +49,7 @@
              <blockquote class="blockquote ml-5">
                  <p class="mb-0"><small>{{reply.content}}</small></p>
                  <footer class="blockquote-footer"><small>by <cite
-                             title="Source Title">{{reply.user|capfirst}}</cite></small>
+                             title="Source Title">{{reply.author|capfirst}}</cite></small>
                  </footer>
              </blockquote>
              {% endfor %}
