@@ -124,3 +124,11 @@ dmypy.json
 
 .vscode/
 static/
+.bash_history
+.bashrc
+.gitconfig
+.my.cnf
+.profile
+.pythonstartup.py
+.viminfo
+.vimrc
